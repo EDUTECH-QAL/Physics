@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}Power – Physics Tools{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-10">
+  <div class="mb-6 flex items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-100">
+        {% if request.session.lang == 'en' %}Power{% else %}Power (القدرة){% endif %}
+      </h1>
+      <p class="text-gray-400 text-sm md:text-base mt-1">
+        {% if request.session.lang == 'en' %}
+        Calculate power either from work and time or from force and velocity.
+        {% else %}
+        احسب القدرة باستخدام الشغل والزمن أو باستخدام القوة والسرعة.
+        {% endif %}
+      </p>
+    </div>
+    <a href="/tools/" class="inline-flex items-center gap-2 text-sm text-emerald-300 hover:text-emerald-200">
+      <i class="fa-solid fa-arrow-right"></i>
+      {% if request.session.lang == 'en' %}Back to tools{% else %}رجوع إلى الأدوات{% endif %}
+    </a>
+  </div>
+
+  <form method="post" class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col gap-4">
+    {% csrf_token %}
+    <fieldset class="text-sm text-gray-200 mb-2">
+      <legend class="font-semibold mb-2">
+        {% if request.session.lang == 'en' %}Choose formula{% else %}اختَر الصيغة{% endif %}
+      </legend>
+      <label class="flex items-center gap-2 mb-1">
+        <input type="radio" name="mode" value="wt" {% if mode == 'wt' %}checked{% endif %}>
+        <span>P = W / t</span>
+      </label>
+      <label class="flex items-center gap-2">
+        <input type="radio" name="mode" value="fv" {% if mode == 'fv' %}checked{% endif %}>
+        <span>P = F × v × cos(θ)</span>
+      </label>
+    </fieldset>
+    <div class="flex flex-col gap-4">
+      {% if mode == 'wt' %}
+      <label class="text-sm text-gray-200">
+        {% if request.session.lang == 'en' %}Work W (J){% else %}الشغل W (J){% endif %}
+        <input type="number" step="any" name="W" required class="mt-1 w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-gray-100">
+      </label>
+      <label class="text-sm text-gray-200">
+        {% if request.session.lang == 'en' %}Time t (s){% else %}الزمن t (s){% endif %}
+        <input type="number" step="any" name="t" required class="mt-1 w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-gray-100">
+      </label>
+      {% else %}
+      <label class="text-sm text-gray-200">
+        {% if request.session.lang == 'en' %}Force F (N){% else %}القوة F (N){% endif %}
+        <input type="number" step="any" name="F" required class="mt-1 w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-gray-100">
+      </label>
+      <label class="text-sm text-gray-200">
+        {% if request.session.lang == 'en' %}Speed v (m/s){% else %}السرعة v (m/s){% endif %}
+        <input type="number" step="any" name="v" required class="mt-1 w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-gray-100">
+      </label>
+      <label class="text-sm text-gray-200">
+        {% if request.session.lang == 'en' %}Angle θ (degrees){% else %}الزاوية θ (°){% endif %}
+        <input type="number" step="any" name="theta" value="0" class="mt-1 w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-gray-100">
+      </label>
+      {% endif %}
+    </div>
+    <button type="submit" class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-semibold hover:bg-emerald-400 transition">
+      {% if request.session.lang == 'en' %}Calculate{% else %}احسب{% endif %}
+    </button>
+  </form>
+
+  {% if result is not None %}
+  <div class="mt-4 bg-emerald-500/10 border border-emerald-500/40 rounded-2xl px-4 py-3 text-emerald-100">
+    <span class="font-semibold">P = {{ result }} W</span>
+  </div>
+  {% endif %}
+
+  <section class="mt-6 bg-slate-900/60 border border-slate-800 rounded-2xl p-5 text-sm text-gray-200">
+    <p class="font-semibold mb-1">P = W / t أو P = F × v × cos(θ)</p>
+    <p class="mb-1">
+      {% if request.session.lang == 'en' %}
+      Power measures how fast work is done. Doing the same work in less time means higher power.
+      {% else %}
+      القدرة تقيس سرعة إنجاز الشغل؛ إنجاز نفس الشغل في زمن أقل يعني قدرة أكبر.
+      {% endif %}
+    </p>
+    <p class="text-emerald-300">
+      {% if request.session.lang == 'en' %}
+      Tip: Choose the formula that matches the data given in the problem.
+      {% else %}
+      تلميح: اختر الصيغة الأنسب بناءً على المعطيات في المسألة.
+      {% endif %}
+    </p>
+  </section>
+</div>
+{% endblock %}

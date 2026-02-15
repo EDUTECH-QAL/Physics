@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+
+{% block title %}أدوات الشغل والطاقة – Physics Tools{% endblock %}
+
+{% block content %}
+<div class="bg-slate-900 text-white py-10 border-b border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl md:text-4xl font-bold mb-2">
+        {% if request.session.lang == 'en' %}
+        Work &amp; Energy Tools
+        {% else %}
+        أدوات الشغل والطاقة
+        {% endif %}
+      </h1>
+      <p class="opacity-80 text-sm md:text-base">
+        {% if request.session.lang == 'en' %}
+        Choose a calculator to solve physics problems step by step.
+        {% else %}
+        اختر الأداة المناسبة لحساب الكميات الفيزيائية في وحدة الشغل والطاقة.
+        {% endif %}
+      </p>
+    </div>
+    <a href="/" class="hidden md:inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-xl text-sm font-medium border border-white/20 hover:bg-white/20 transition">
+      <i class="fa-solid fa-house"></i>
+      <span>
+        {% if request.session.lang == 'en' %}Home{% else %}القائمة الرئيسية{% endif %}
+      </span>
+    </a>
+  </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="/tools/work/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-emerald-600 transition">
+            {% if request.session.lang == 'en' %}Work{% else %}Work (الشغل){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-emerald-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">W = F × d × cos(θ)</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Calculates the work done by a force along a displacement.
+          {% else %}
+          حساب الشغل المبذول بواسطة قوة على جسم في اتجاه الحركة.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+
+    <a href="/tools/kinetic/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition">
+            {% if request.session.lang == 'en' %}Kinetic Energy{% else %}Kinetic Energy (الطاقة الحركية){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-blue-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">KE = 0.5 × m × v²</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Kinetic energy calculator for a moving object.
+          {% else %}
+          حاسبة الطاقة الحركية لجسم متحرك.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+
+    <a href="/tools/gpe/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-emerald-600 transition">
+            {% if request.session.lang == 'en' %}Gravitational PE{% else %}Gravitational PE (طاقة الوضع الجاذبية){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-emerald-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">U = m × g × h</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Calculates gravitational potential energy at a given height.
+          {% else %}
+          حساب طاقة وضع جاذبية جسم على ارتفاع محدد.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+
+    <a href="/tools/elastic/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-pink-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-pink-600 transition">
+            {% if request.session.lang == 'en' %}Elastic PE{% else %}Elastic PE (طاقة وضع النابض){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-pink-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">U_s = 0.5 × k × x²</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Energy stored in a compressed or stretched spring.
+          {% else %}
+          طاقة الوضع المختزنة في نابض مضغوط أو مشدود.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+
+    <a href="/tools/power/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition">
+            {% if request.session.lang == 'en' %}Power{% else %}Power (القدرة){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-yellow-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">P = W / t أو P = F × v × cos(θ)</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Power calculator using work and time or force and velocity.
+          {% else %}
+          حساب القدرة كمعدل إنجاز الشغل.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+
+    <a href="/tools/efficiency/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-teal-600 transition">
+            {% if request.session.lang == 'en' %}Efficiency{% else %}Efficiency (الكفاءة){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-teal-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">η = (المخرجات / المدخلات) × 100%</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Calculates efficiency as a percentage of useful output.
+          {% else %}
+          حساب كفاءة تحويل الطاقة أو القدرة.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+
+    <a href="/tools/work_energy/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-purple-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition">
+            {% if request.session.lang == 'en' %}Work–Energy{% else %}Work–Energy (مبرهنة الشغل والطاقة){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-purple-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">W_net = ΔK</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Connects net work with the change in kinetic energy.
+          {% else %}
+          ربط الشغل الصافي بالتغير في الطاقة الحركية للجسم.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+
+    <a href="/tools/friction_work/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-red-600 transition">
+            {% if request.session.lang == 'en' %}Friction Work{% else %}Friction Work (شغل الاحتكاك){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-red-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">W_f = − μ_k × m × g × d</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Calculates work done by kinetic friction on a moving object.
+          {% else %}
+          حساب شغل قوة الاحتكاك على جسم متحرك.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+
+    <a href="/tools/energy_conservation/" class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 overflow-hidden">
+      <div class="absolute top-0 right-0 w-24 h-24 bg-sky-50 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150 duration-500"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-bold text-gray-900 group-hover:text-sky-600 transition">
+            {% if request.session.lang == 'en' %}Energy Conservation{% else %}Energy Conservation (حفظ الطاقة){% endif %}
+          </h2>
+          <i class="fa-solid fa-arrow-left text-gray-400 group-hover:text-sky-600 transition"></i>
+        </div>
+        <p class="text-gray-600 text-sm mb-2">KE_i + U_i = KE_f + U_f</p>
+        <p class="text-gray-500 text-sm">
+          {% if request.session.lang == 'en' %}
+          Uses conservation of mechanical energy to find speed or height.
+          {% else %}
+          استخدام مبدأ حفظ الطاقة لإيجاد السرعة أو الارتفاع.
+          {% endif %}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}

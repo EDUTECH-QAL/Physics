@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Gravitational PE – Physics Tools{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-10">
+  <div class="mb-6 flex items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-100">
+        {% if request.session.lang == 'en' %}Gravitational Potential Energy{% else %}Gravitational Potential Energy (طاقة الوضع الجاذبية){% endif %}
+      </h1>
+      <p class="text-gray-400 text-sm md:text-base mt-1">
+        {% if request.session.lang == 'en' %}
+        Find gravitational potential energy from mass, height and gravitational acceleration.
+        {% else %}
+        احسب طاقة الوضع الجاذبية من الكتلة والارتفاع وعجلة الجاذبية.
+        {% endif %}
+      </p>
+    </div>
+    <a href="/tools/" class="inline-flex items-center gap-2 text-sm text-emerald-300 hover:text-emerald-200">
+      <i class="fa-solid fa-arrow-right"></i>
+      {% if request.session.lang == 'en' %}Back to tools{% else %}رجوع إلى الأدوات{% endif %}
+    </a>
+  </div>
+
+  <form method="post" class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col gap-4">
+    {% csrf_token %}
+    <label class="text-sm text-gray-200">
+      {% if request.session.lang == 'en' %}Mass m (kg){% else %}الكتلة m (kg){% endif %}
+      <input type="number" step="any" name="m" required class="mt-1 w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-gray-100">
+    </label>
+    <label class="text-sm text-gray-200">
+      {% if request.session.lang == 'en' %}Gravitational acceleration g (m/s²){% else %}العجلة g (m/s²){% endif %}
+      <input type="number" step="any" name="g" value="9.8" class="mt-1 w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-gray-100">
+    </label>
+    <label class="text-sm text-gray-200">
+      {% if request.session.lang == 'en' %}Height h (m){% else %}الارتفاع h (m){% endif %}
+      <input type="number" step="any" name="h" required class="mt-1 w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-gray-100">
+    </label>
+    <button type="submit" class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-semibold hover:bg-emerald-400 transition">
+      {% if request.session.lang == 'en' %}Calculate{% else %}احسب{% endif %}
+    </button>
+  </form>
+
+  {% if result is not None %}
+  <div class="mt-4 bg-emerald-500/10 border border-emerald-500/40 rounded-2xl px-4 py-3 text-emerald-100">
+    <span class="font-semibold">U = {{ result }} J</span>
+  </div>
+  {% endif %}
+
+  <section class="mt-6 bg-slate-900/60 border border-slate-800 rounded-2xl p-5 text-sm text-gray-200">
+    <p class="font-semibold mb-1">U = m × g × h</p>
+    <p class="mb-1">
+      {% if request.session.lang == 'en' %}
+      Potential energy increases when mass or height increases and is measured relative to a chosen reference level.
+      {% else %}
+      تزداد طاقة الوضع بزيادة الارتفاع أو الكتلة، وتقاس بالنسبة لمستوى مرجعي يختاره الطالب.
+      {% endif %}
+    </p>
+    <p class="text-emerald-300">
+      {% if request.session.lang == 'en' %}
+      Tip: You can adjust g to 9.8 or 9.81 m/s² according to the question.
+      {% else %}
+      تلميح: يمكن تغيير g مثل 9.8 أو 9.81 m/s² حسب المعطيات في المسألة.
+      {% endif %}
+    </p>
+  </section>
+</div>
+{% endblock %}

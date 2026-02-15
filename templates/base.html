@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{% if request.session.lang == 'en' %}en{% else %}ar{% endif %}" dir="{% if request.session.lang == 'en' %}ltr{% else %}rtl{% endif %}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Physics Tools{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="bg-slate-950 text-gray-100 min-h-screen">
+  <header class="bg-slate-900 text-gray-100 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+          <i class="fa-solid fa-atom"></i>
+        </div>
+        <div>
+          <div class="text-sm font-semibold tracking-wide uppercase text-emerald-300">
+            Physics Tools
+          </div>
+          <div class="text-xs text-gray-400">
+            {% if request.session.lang == 'en' %}
+            Powered by Edu-Tech Qalyubia
+            {% else %}
+            برعاية الفريق التقني بالقليوبية
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/lang/ar/" class="px-3 py-1.5 rounded-full text-xs font-semibold border {% if request.session.lang != 'en' %}bg-emerald-500 text-slate-950 border-emerald-400{% else %}border-slate-600 text-gray-300 hover:bg-slate-800{% endif %}">
+          عربى
+        </a>
+        <a href="/lang/en/" class="px-3 py-1.5 rounded-full text-xs font-semibold border {% if request.session.lang == 'en' %}bg-emerald-500 text-slate-950 border-emerald-400{% else %}border-slate-600 text-gray-300 hover:bg-slate-800{% endif %}">
+          English
+        </a>
+      </div>
+    </div>
+  </header>
+  <main class="bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-gray-100">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
